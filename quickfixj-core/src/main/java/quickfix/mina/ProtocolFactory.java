@@ -21,6 +21,7 @@ package quickfix.mina;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.HashMap;
@@ -178,7 +179,7 @@ public class ProtocolFactory {
             } else {
                 // Use Basic authentication
                 String credentials = proxyUser + ":" + proxyPassword;
-                String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes());
+                String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes(StandardCharsets.UTF_8));
                 headers.put("Proxy-Authorization", Collections.singletonList("Basic " + encodedCredentials));
             }
             
